@@ -1,0 +1,147 @@
+Copyright (c) 2007-2013 Informatica. All rights reserved.
+
+This software and documentation contain proprietary information of Informatica Corporation and are provided under a license agreement containing restrictions on use and
+disclosure and are also protected by copyright law. Reverse engineering of the software is prohibited. No part of this document may be reproduced or transmitted in any form,
+by any means (electronic, photocopying, recording or otherwise) without prior consent of Informatica Corporation. This Software may be protected by U.S. and/or international
+Patents and other Patents Pending.
+
+Use, duplication, or disclosure of the Software by the U.S. Government is subject to the restrictions set forth in the applicable software license agreement and as provided in
+DFARS 227.7202-1(a) and 227.7702-3(a) (1995), DFARS 252.227-7013©(1)(ii) (OCT 1988), FAR 12.212(a) (1995), FAR 52.227-19, or FAR 52.227-14 (ALT III), as applicable.
+The information in this product or documentation is subject to change without notice. If you find any problems in this product or documentation, please report them to us in
+writing.
+
+Informatica, Informatica Platform, Informatica Data Services, PowerCenter, PowerCenterRT, PowerCenter Connect, PowerCenter Data Analyzer, PowerExchange,
+PowerMart, Metadata Manager, Informatica Data Quality, Informatica Data Explorer, Informatica B2B Data Transformation, Informatica B2B Data Exchange Informatica On
+Demand, Informatica Identity Resolution, Informatica Application Information Lifecycle Management, Informatica Complex Event Processing, Ultra Messaging and Informatica
+Master Data Management are trademarks or registered trademarks of Informatica Corporation in the United States and in jurisdictions throughout the world. All other company
+and product names may be trade names or trademarks of their respective owners.
+
+Portions of this software and/or documentation are subject to copyright held by third parties, including without limitation: 
+
+Copyright DataDirect Technologies. All rights reserved. 
+Copyright © Sun Microsystems. All rights reserved. 
+Copyright © RSA Security Inc. All Rights Reserved. 
+Copyright © Ordinal Technology Corp. All rights
+reserved.Copyright © Aandacht c.v. All rights reserved. 
+Copyright Genivia, Inc. All rights reserved. 
+Copyright Isomorphic Software. All rights reserved. 
+Copyright © Meta Integration Technology, Inc. All rights reserved. 
+Copyright © Intalio. All rights reserved. 
+Copyright © Oracle. All rights reserved. 
+Copyright © Adobe Systems Incorporated. All rights reserved. 
+Copyright © DataArt, Inc. All rights reserved. 
+Copyright © ComponentSource. All rights reserved. 
+Copyright © Microsoft Corporation. All rights reserved.
+Copyright © Rogue Wave Software, Inc. All rights reserved. 
+Copyright © Teradata Corporation. All rights reserved. 
+Copyright © Yahoo! Inc. All rights reserved. 
+Copyright ©Glyph & Cog, LLC. All rights reserved. 
+Copyright © Thinkmap, Inc. All rights reserved. 
+Copyright © Clearpace Software Limited. All rights reserved. 
+Copyright © Information Builders, Inc. All rights reserved. 
+Copyright © OSS Nokalva, Inc. All rights reserved. 
+Copyright Edifecs, Inc. All rights reserved. 
+Copyright Cleo Communications, Inc. All rights reserved. 
+Copyright © International Organization for Standardization 1986. All rights reserved. 
+Copyright © ej-technologies GmbH. All rights reserved. 
+Copyright © Jaspersoft Corporation. All rights reserved. 
+Copyright © is International Business Machines Corporation. All rights reserved.
+Copyright © yWorks GmbH. All rights reserved. 
+Copyright ©Lucent Technologies. All rights reserved. 
+Copyright (c) University of Toronto. All rights reserved. 
+Copyright © Daniel Veillard. All rights reserved. 
+Copyright © Unicode, Inc. All rights reserved.
+Copyright IBM Corp. All rights reserved. 
+Copyright © MicroQuill Software Publishing, Inc. All rights reserved. 
+Copyright © PassMark Software Pty Ltd. All rights reserved.
+Copyright © LogiXML, Inc. All rights reserved. 
+Copyright © 2003-2010 Lorenzi Davide, All rights reserved. 
+Copyright © Red Hat, Inc. All rights reserved. 
+Copyright © The Board of Trustees of the Leland Stanford Junior University. All rights reserved. 
+Copyright © EMC Corporation. All rights reserved. 
+Copyright © Flexera Software. All rights reserved.
+
+This product includes software developed by the Apache Software Foundation (http://www.apache.org/), and other software which is licensed under the Apache License,
+Version 2.0 (the "License"). You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0. Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under the License.
+
+This product includes software which was developed by Mozilla (http://www.mozilla.org/), software copyright The JBoss Group, LLC, all rights reserved; software copyright ©
+1999-2006 by Bruno Lowagie and Paulo Soares and other software which is licensed under the GNU Lesser General Public License Agreement, which may be found at http://
+www.gnu.org/licenses/lgpl.html. The materials are provided free of charge by Informatica, "as-is", without warranty of any kind, either express or implied, including but not
+limited to the implied warranties of merchantability and fitness for a particular purpose.
+
+The product includes ACE(TM) and TAO(TM) software copyrighted by Douglas C. Schmidt and his research group at Washington University, University of California, Irvine,
+and Vanderbilt University, Copyright (©) 1993-2006, all rights reserved.
+
+This product includes software developed by the OpenSSL Project for use in the OpenSSL Toolkit (copyright The OpenSSL Project. All Rights Reserved) and redistribution of
+this software is subject to terms available at http://www.openssl.org and http://www.openssl.org/source/license.html.
+
+This product includes Curl software which is Copyright 1996-2007, Daniel Stenberg, <daniel@haxx.se>. All Rights Reserved. Permissions and limitations regarding this
+software are subject to terms available at http://curl.haxx.se/docs/copyright.html. Permission to use, copy, modify, and distribute this software for any purpose with or without
+fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies.
+
+The product includes software copyright 2001-2005 (©) MetaStuff, Ltd. All Rights Reserved. Permissions and limitations regarding this software are subject to terms available
+at http://www.dom4j.org/ license.html.
+
+The product includes software copyright © 2004-2007, The Dojo Foundation. All Rights Reserved. Permissions and limitations regarding this software are subject to terms
+available at http://dojotoolkit.org/license.
+
+This product includes ICU software which is copyright International Business Machines Corporation and others. All rights reserved. Permissions and limitations regarding this
+software are subject to terms available at http://source.icu-project.org/repos/icu/icu/trunk/license.html.
+
+This product includes software copyright © 1996-2006 Per Bothner. All rights reserved. Your right to use such materials is set forth in the license which may be found at http://
+www.gnu.org/software/ kawa/Software-License.html.
+
+This product includes OSSP UUID software which is Copyright © 2002 Ralf S. Engelschall, Copyright © 2002 The OSSP Project Copyright © 2002 Cable & Wireless
+Deutschland. Permissions and limitations regarding this software are subject to terms available at http://www.opensource.org/licenses/mit-license.php.
+
+This product includes software developed by Boost (http://www.boost.org/) or under the Boost software license. Permissions and limitations regarding this software are subject
+to terms available at http:/ /www.boost.org/LICENSE_1_0.txt.
+
+This product includes software copyright © 1997-2007 University of Cambridge. Permissions and limitations regarding this software are subject to terms available at http://
+www.pcre.org/license.txt.
+
+This product includes software copyright © 2007 The Eclipse Foundation. All Rights Reserved. Permissions and limitations regarding this software are subject to terms
+available at http:// www.eclipse.org/org/documents/epl-v10.php.
+
+This product includes software licensed under the terms at http://www.tcl.tk/software/tcltk/license.html, http://www.bosrup.com/web/overlib/?License, http://www.stlport.org/
+doc/ license.html, http://www.asm.ow2.org/license.html, http://www.cryptix.org/LICENSE.TXT, http://hsqldb.org/web/hsqlLicense.html, http://httpunit.sourceforge.net/doc/
+license.html, http://jung.sourceforge.net/license.txt , http://www.gzip.org/zlib/zlib_license.html, http://www.openldap.org/software/release/license.html, http://www.libssh2.org,
+http://slf4j.org/license.html, http://www.sente.ch/software/OpenSourceLicense.html, http://fusesource.com/downloads/license-agreements/fuse-message-broker-v-5-3- licenseagreement;
+http://antlr.org/license.html; http://aopalliance.sourceforge.net/; http://www.bouncycastle.org/licence.html; http://www.jgraph.com/jgraphdownload.html; http://
+www.jcraft.com/jsch/LICENSE.txt. http://jotm.objectweb.org/bsd_license.html; . http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231; http://www.slf4j.org/
+license.html; http://developer.apple.com/library/mac/#samplecode/HelpHook/Listings/HelpHook_java.html; http://nanoxml.sourceforge.net/orig/copyright.html; http://
+www.json.org/license.html; http://forge.ow2.org/projects/javaservice/, http://www.postgresql.org/about/licence.html, http://www.sqlite.org/copyright.html, http://www.tcl.tk/
+software/tcltk/license.html, http://www.jaxen.org/faq.html, http://www.jdom.org/docs/faq.html, http://www.slf4j.org/license.html; http://www.iodbc.org/dataspace/iodbc/wiki/
+iODBC/License; http://www.keplerproject.org/md5/license.html; http://www.toedter.com/en/jcalendar/license.html; http://www.edankert.com/bounce/index.html; http://www.netsnmp.
+org/about/license.html; http://www.openmdx.org/#FAQ; http://www.php.net/license/3_01.txt; http://srp.stanford.edu/license.txt; http://www.schneier.com/blowfish.html;
+http://www.jmock.org/license.html; http://xsom.java.net; and http://benalman.com/about/license/.
+
+This product includes software licensed under the Academic Free License (http://www.opensource.org/licenses/afl-3.0.php), the Common Development and Distribution
+License (http://www.opensource.org/licenses/cddl1.php) the Common Public License (http://www.opensource.org/licenses/cpl1.0.php), the Sun Binary Code License
+Agreement Supplemental License Terms, the BSD License (http:// www.opensource.org/licenses/bsd-license.php) the MIT License (http://www.opensource.org/licenses/mitlicense.
+php) and the Artistic License (http://www.opensource.org/licenses/artistic-license-1.0).
+
+This product includes software copyright © 2003-2006 Joe WaInes, 2006-2007 XStream Committers. All rights reserved. Permissions and limitations regarding this software
+are subject to terms available at http://xstream.codehaus.org/license.html. This product includes software developed by the Indiana University Extreme! Lab. For further
+information please visit http://www.extreme.indiana.edu/.
+
+This Software is protected by U.S. Patent Numbers 5,794,246; 6,014,670; 6,016,501; 6,029,178; 6,032,158; 6,035,307; 6,044,374; 6,092,086; 6,208,990; 6,339,775;
+6,640,226; 6,789,096; 6,820,077; 6,823,373; 6,850,947; 6,895,471; 7,117,215; 7,162,643; 7,243,110, 7,254,590; 7,281,001; 7,421,458; 7,496,588; 7,523,121; 7,584,422;
+7676516; 7,720,842; 7,721,270; and 7,774,791, international Patents and other Patents Pending.
+
+DISCLAIMER: Informatica Corporation provides this documentation "as is" without warranty of any kind, either express or implied, including, but not limited to, the implied
+warranties of noninfringement, merchantability, or use for a particular purpose. Informatica Corporation does not warrant that this software or documentation is error free. The
+information provided in this software or documentation may include technical inaccuracies or typographical errors. The information in this software and documentation is
+subject to change at any time without notice.
+
+NOTICES
+This Informatica product (the "Software") includes certain drivers (the "DataDirect Drivers") from DataDirect Technologies, an operating company of Progress Software
+Corporation ("DataDirect") which are subject to the following terms and conditions:
+1. THE DATADIRECT DRIVERS ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT
+LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT.
+2. IN NO EVENT WILL DATADIRECT OR ITS THIRD PARTY SUPPLIERS BE LIABLE TO THE END-USER CUSTOMER FOR ANY DIRECT, INDIRECT,
+INCIDENTAL, SPECIAL, CONSEQUENTIAL OR OTHER DAMAGES ARISING OUT OF THE USE OF THE ODBC DRIVERS, WHETHER OR NOT INFORMED OF
+THE POSSIBILITIES OF DAMAGES IN ADVANCE. THESE LIMITATIONS APPLY TO ALL CAUSES OF ACTION, INCLUDING, WITHOUT LIMITATION, BREACH
+OF CONTRACT, BREACH OF WARRANTY, NEGLIGENCE, STRICT LIABILITY, MISREPRESENTATION AND OTHER TORTS.

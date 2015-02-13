@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" output="bin/src" path="src"/>
+	<classpathentry kind="src" output="bin/test" path="test"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/rDTM"/>
+	<classpathentry kind="lib" path="lib/commons-lang-2.6.jar"/>
+	<classpathentry kind="lib" path="lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons-codec-1.5.jar"/>
+	<classpathentry kind="lib" path="lib/gson-1.7.1.jar"/>
+	<classpathentry kind="lib" path="lib/js-1.7R2.jar"/>
+	<classpathentry kind="lib" path="lib/sfdc-wsclient-stub.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/commons-beanutils-1.8.3.jar"/>
+	<classpathentry kind="lib" path="lib/force-wsc-27.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/adapter-common.jar"/>
+	<classpathentry kind="lib" path="lib/adapter-interface.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/ini4j-0.5.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

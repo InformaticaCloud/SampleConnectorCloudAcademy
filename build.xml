@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="package" name="Sample_JDBC_Connector">
+	<property environment="env" />
+
+	<!-- ============================================== -->
+	<!-- TODO Change the properties below to match your -->
+	<!-- project settings                               -->
+	<!-- ============================================== -->
+	
+	<!-- Shortname connot contain any special characters or spaces -->
+	<property name="connector.shortname" value="JDBC" />
+
+	<!-- Plugin class should be the class that extends InfaPlugin  -->
+	<property name="connector.plugin.class" value="com.informatica.connector.sample.jdbc.JDBCConnectorDescriptor" />
+	
+	<!-- Infaagent Directory should point to the directory where infaagent is installed -->
+	<property name="infaagent.directory" location="C:\Program Files (x86)\Informatica Cloud Secure Agent" />
+	
+	<!-- (OPTIONAL) Deploy Directory should point to the dropbox folder for deployment -->
+	<!-- Initially Point this to any valid directory in your local filesystem -->
+	<property name="connector.deploy.directory" location="${basedir}/dist" />
+	
+	<!-- (OPTIONAL) Copy your API WSDL to the wsdl folder and specify its name here  -->
+	<property name="wsdl.location" location="${basedir}/wsdl/sfdc_partner_wsdl_v27.wsdl" />
+
+	<!-- ============================================== -->
+	<!-- END TODO Should not have to make any other     -->
+	<!-- changes to the build file                      -->
+	<!-- ============================================== -->
+
+
+
+	<property name="dir.src" location="${basedir}/src" />
+	<property name="dir.bin.src" location="${basedir}/bin/src" />
+	<property name="dir.dist" location="${basedir}/dist" />
+	<property name="dir.lib" location="${basedir}/lib" />
+	<property name="dir.lib" location="${basedir}/lib" />
+	<property name="infa.junit" value="${basedir}/INFA_JUnit" />
+	<property name="debuglevel" value="source,lines,vars" />
+	<property name="target" value="1.7" />
+	<property name="source" value="1.7" />
+	
+	<condition property="connector.deploy.directory.exists">
+	 <available file="${connector.deploy.directory}" type="dir"/>
+	</condition>
+	
+	<path id="connector.classpath">
+		<fileset dir="${infaagent.directory}\main\bin\rdtm\javalib">
+			<include name="*.jar" />
+		</fileset>
+		<fileset dir="${dir.lib}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<target name="init">
+		<mkdir dir="${dir.bin.src}" />
+		<mkdir dir="${dir.dist}" />
+		<mkdir dir="${dir.dist}/Adapter-jars" />
+	</target>
+	<target name="clean">
+		<delete dir="${dir.bin.src}" failonerror="false" />
+		<delete dir="${dir.dist}" failonerror="false" />
+		<delete dir="${infa.junit}" failonerror="false" />
+		<delete dir="generated" failonerror="false" />
+		<delete dir="target" failonerror="false" />
+	</target>
+	<target depends="clean" name="cleanall" description="Remove all generated files and dirs." />
+	<target name="compile" depends="clean,init" description="Compile all source code. Output goes to ${dir.bin.src}">
+		<javac srcdir="${dir.src}" destdir="${dir.bin.src}" listfiles="yes" debug="true" debuglevel="${debuglevel}" source="${source}" target="${target}">
+			<classpath>
+				<path refid="connector.classpath" />
+			</classpath>
+		</javac>
+	</target>
+	<!-- ================================= 
+          target: create adapter jar              
+         ================================= -->
+	<target name="createAdapterJar" description="Builds the jar in ${dir.dist} for the Adapter." depends="compile">
+		<echo message="${ant.project.name}: ${ant.file}" />
+		<jar basedir="${dir.bin.src}" defaultexcludes="true" jarfile="${dir.dist}/Adapter-jars/${connector.shortname}-adapter.jar">
+			<exclude name="**/log4j.properties" />
+			<service type="com.informatica.cloud.api.adapter.plugin.IPlugin" provider="${connector.plugin.class}" />
+		</jar>
+	</target>
+	<!-- ================================= 
+          target: Package adapter jars for deployment             
+         ================================= -->
+	<target name="package" description="Assemples and packages the connector jar and dependencies" depends="createAdapterJar">
+		<copy todir="${dir.dist}/Adapter-jars">
+			<fileset dir="${dir.lib}">
+			    <exclude name="adapter-common.jar" />  
+			    <exclude name="adapter-interface.jar" />  
+			    <exclude name="toolkitwrapper-sources.jar" />  
+			    <exclude name="toolkitwrapper.jar" />
+			</fileset>		
+		</copy>
+		<zip basedir="${dir.dist}" destfile="${dir.dist}/package-${connector.shortname}.ver.zip" update="true" />
+	</target>
+	<!-- ================================= 
+	          target: infa-junit-test              
+	     ================================= -->
+	<target name="test" depends="package">
+		<property name="test.junit.infa" value="${basedir}/INFA_JUnit" />
+		<property name="test.junit.results" value="${test.junit.infa}/junit_results" />
+		<property name="test.junit.reports" value="${test.junit.infa}/junit_reports" />
+		<property name="test.junit.lib" value="${basedir}/INFA_JUnit_lib" />
+		<property name="test.junit.adapterjars" value="${basedir}/Adapter-jars" />
+		<delete dir="${test.junit.infa}" />
+		<delete dir="${test.junit.adapterjars}" />
+		<mkdir dir="${test.junit.results}" />
+		<mkdir dir="${test.junit.reports}" />
+		<mkdir dir="${test.junit.adapterjars}" />
+		<!-- Copy the jars of the dist folder into the Adapter-jars folder.
+			 This is done as some changes will be done to contents of the adapter jar -->
+		<copy todir="${test.junit.adapterjars}">
+			<fileset dir="${dir.dist}/Adapter-jars" includes="*.jar" />
+		</copy>
+		<!-- A file ./INFA_JUnit/Junit_Log.log will be created. This config is specified in ${dir.lib}/adapter-interfaceTester.jar!/log4j.properties -->
+		<property url="jar:file:${test.junit.lib}/adapter-interfaceTester.jar!/log4j.properties" />
+		<!-- See the <uuid>.ini file in INIFiles for setting up the connection parameters like username/password/url and SampleSize for testing the record names -->
+		<junit fork="yes" forkMode="once" printsummary="withOutAndErr" haltonfailure="yes" haltonerror="yes" showoutput="true">
+			<!-- Make changes to the classpath if necessary-->
+			<classpath>
+				<fileset dir="${infaagent.directory}\main\bin\rdtm\javalib">
+					<include name="*.jar" />
+				</fileset>
+				<fileset dir="${test.junit.lib}">
+					<include name="*.jar" />
+				</fileset>
+				<!--fileset dir="${dir.lib}">
+                    <include name="*.jar"/>
+                </fileset-->
+				<fileset dir="${dir.dist}/Adapter-jars">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+			<formatter type="xml" usefile="true" />
+			<test name="com.informatica.cloud.api.adapter.test.metadata.RegistrationInfoTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.typesystem.DataTypeListTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.typesystem.TypeSystemTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.plugin.PluginTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.connection.ConnectionTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.connection.ConnectionAttributeListTest" todir="${test.junit.results}"/>
+			<test name="com.informatica.cloud.api.adapter.test.metadata.MetaDataTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.metadata.MetaDataParameterizedTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.metadata.ReadOperationAttributeListTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.metadata.RecordAttributeListTest" todir="${test.junit.results}" />
+			<test name="com.informatica.cloud.api.adapter.test.metadata.WriteOperationAttributeListTest" todir="${test.junit.results}" />
+			<!-- This will create a <Record_name>.csv file in the ./CSV folder for the record name specified in the <uuid>.ini file -->
+			<test name="com.informatica.cloud.api.adapter.test.read.ReadTest" todir="${test.junit.results}" />
+			<!-- For testing record say, "Opportunity" specified in the <uuid>.ini file 
+			through WriteTest create the following files in ./CSV/ folder  
+				* Opportunity_Write.csv for testing insert().
+				* Opportunity_Update.csv for testing update().
+				* Opportunity_Upsert.csv for testing upsert().
+				* Opportunity_Delete.csv for testing delete().
+			-->
+			<test name="com.informatica.cloud.api.adapter.test.write.WriteTest" todir="${test.junit.results}"/>
+			<!-- use this if the order doesn't matter -->
+			<!-- <batchtest todir="${test.junit.results}">
+	        <fileset dir="${dir.build}">
+	          <include name="**/*Test.class"/>
+	        </fileset>
+	      </batchtest> -->
+		</junit>
+		<junitreport todir="${test.junit.results}">
+			<fileset dir="${test.junit.results}">
+				<include name="TEST-*" />
+			</fileset>
+			<report todir="${test.junit.reports}" />
+		</junitreport>
+		<delete dir="${test.junit.adapterjars}" />
+	</target>
+
+	<!-- ================================= 
+          target: deploy              
+         ================================= -->
+	<target name="deploy" description="deploys the package to informatica cloud" depends="test">
+		<fail  unless="${connector.deploy.directory.exists}" message=" ${connector.deploy.directory} does not exist"/>
+		<copy todir="${connector.deploy.directory}" file="${dir.dist}/package-${connector.shortname}.ver.zip" />
+	</target>
+
+	<!-- ============================================== -->
+	<!-- Genereate ws client stub from wsdl using axis2 -->
+	<!-- Refer: http://axis.apache.org/axis2/java/core/tools/CodegenToolReference.html#cmdref -->
+	<!-- ============================================== -->
+	<target name="wsdl2java-axis2">
+		<delete dir="${basedir}/generated" failonerror="false" />
+		<java classname="org.apache.axis2.wsdl.WSDL2Java" fork="true">
+			<classpath>
+				<path refid="connector.classpath" />
+			</classpath>
+			<arg value="-uri" />
+			<arg file="${wsdl.location}" />
+			<arg value="-d" />
+			<arg value="xmlbeans" />
+			<arg value="-o" />
+			<arg file="${basedir}/generated" />
+		</java>
+		<mkdir dir="${basedir}/generated/bin" />
+		<javac srcdir="${basedir}/generated/src" destdir="${basedir}/generated/bin" listfiles="yes" debug="true" debuglevel="${debuglevel}" source="${source}" target="${target}">
+			<classpath>
+				<path refid="connector.classpath" />
+			</classpath>
+		</javac>
+		<jar basedir="${basedir}/generated/bin" defaultexcludes="true" jarfile="lib/${connector.shortname}-wsclient-stub.jar" />
+		<jar basedir="${basedir}/generated/resources" defaultexcludes="true" jarfile="lib/${connector.shortname}-wsclient-resources.jar" />
+	</target>
+
+	<!-- ============================================== -->
+	<!-- Genereate ws client stub from wsdl using WSC   -->
+	<!-- Refer to: https://github.com/forcedotcom/wsc   -->
+	<!-- ============================================== -->
+	<target name="wsdl2java-wsc">
+		<java classname="com.sforce.ws.tools.wsdlc" fork="true">
+			<classpath>
+				<path refid="connector.classpath" />
+			</classpath>
+			<arg file="${wsdl.location}" />
+			<arg file="lib/${connector.shortname}-wsclient-stub.jar" />
+		</java>
+	</target>
+
+	<!-- ============================================== -->
+	<!-- Generate ws client stub from WSDL using axis   -->
+	<!-- Refer to http://axis.apache.org/axis/java/reference.html#WSDL2JavaReference -->
+	<!-- ============================================== -->
+	<target name="wsdl2java-axis">
+		<delete dir="${basedir}/generated" failonerror="false" />
+		<java classname="org.apache.axis.wsdl.WSDL2Java" fork="true" failonerror="true">
+			<arg value="--verbose" />
+			<arg value="--all" />
+			<arg value="--output" />
+			<arg value="${basedir}/generated/src" />
+			<arg value="${wsdl.location}" />
+			<classpath>
+				<path refid="connector.classpath" />
+			</classpath>
+		</java>
+		<mkdir dir="${basedir}/generated/bin" />
+		<javac srcdir="${basedir}/generated/src" destdir="${basedir}/generated/bin" listfiles="yes" debug="true" debuglevel="${debuglevel}" source="${source}" target="${target}">
+			<classpath>
+				<path refid="connector.classpath" />
+			</classpath>
+		</javac>
+		<jar basedir="${basedir}/generated/bin" defaultexcludes="true" jarfile="lib/${connector.shortname}-wsclient-stub.jar" />
+	</target>
+
+	
+</project>
